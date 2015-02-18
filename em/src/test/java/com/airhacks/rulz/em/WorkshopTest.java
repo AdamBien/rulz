@@ -24,7 +24,5 @@ public class WorkshopTest {
         tx.begin();
         em.merge(new Workshop("html5", "html5 for javaee developers"));
         tx.commit();
-
     }
-
 }
