@@ -3,6 +3,7 @@ package com.airhacks.rulz.em;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import static junit.framework.Assert.assertNotNull;
+import org.junit.Rule;
 import org.junit.Test;
 
 /**
@@ -11,6 +12,7 @@ import org.junit.Test;
  */
 public class WorkshopTest {
 
+    @Rule
     public EntityManagerProvider emProvider = EntityManagerProvider.persistenceUnit("it");
 
     @Test
