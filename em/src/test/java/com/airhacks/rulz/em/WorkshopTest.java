@@ -19,6 +19,7 @@ package com.airhacks.rulz.em;
  * limitations under the License.
  * #L%
  */
+import static com.airhacks.rulz.em.EntityManagerProvider.persistenceUnit;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import static org.junit.Assert.assertNotNull;
@@ -32,7 +33,7 @@ import org.junit.Test;
 public class WorkshopTest {
 
     @Rule
-    public EntityManagerProvider emProvider = EntityManagerProvider.persistenceUnit("it");
+    public EntityManagerProvider emProvider = persistenceUnit("it");
 
     @Test
     public void crud() {
