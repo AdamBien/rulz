@@ -14,6 +14,7 @@ Reusable JUnit Rules
         <scope>test</scope>
     </dependency>
 ```
+###Sample use
 
 ```java
 import com.airhacks.rulz.em.*;
