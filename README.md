@@ -2,7 +2,19 @@
 Reusable JUnit Rules
 
 
-##JPA EntityManager
+##JPA EntityManager provider
+
+###Installation
+
+```xml
+    <dependency>
+        <groupId>com.airhacks.rulz</groupId>
+        <artifactId>em</artifactId>
+        <version>[RECENT_VERSION]</version>
+        <scope>test</scope>
+    </dependency>
+```
+###Sample use
 
 ```java
 import com.airhacks.rulz.em.*;
