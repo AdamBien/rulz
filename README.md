@@ -42,3 +42,46 @@ public class WorkshopTest {
     }
 }
 ```
+##JAX-RS 2.0 Client provider
+
+###Installation
+
+```xml
+        <dependency>
+            <groupId>com.airhacks.rulz</groupId>
+            <artifactId>jaxrsclient</artifactId>
+            <version>[RECENT_VERSION]</version>
+            <scope>test</scope>
+        </dependency>
+```
+
+###Sample use
+
+```java
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
+import org.junit.Rule;
+import org.junit.Test;
+
+public class JAXRSClientProviderTest {
+
+    @Rule
+    public JAXRSClientProvider provider = JAXRSClientProvider.buildWithURI("http://www.java.com");
+
+    @Test
+    public void pingJava() {
+        Client client = provider.client();
+        assertNotNull(client);
+        WebTarget target = provider.target();
+        assertNotNull(target);
+        Response response = target.request(MediaType.TEXT_HTML).get();
+        assertThat(response.getStatus(), is(200));
+    }
+
+}
+```
