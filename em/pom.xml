@@ -8,7 +8,7 @@
     </parent>
     <groupId>com.airhacks.rulz</groupId>
     <artifactId>em</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.2</version>
     <packaging>jar</packaging>
     <description>A JUnit rule which makes the JPA EntityManager accessible for integration tests
     </description>
@@ -124,7 +124,7 @@
         <connection>scm:git:git@github.com:AdamBien/rulz.git</connection>
         <url>scm:git:git@github.com:AdamBien/rulz.git</url>
         <developerConnection>scm:git:git@github.com:AdamBien/rulz.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>v0.0.2em</tag>
     </scm>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
