@@ -59,6 +59,7 @@ public class WorkshopTest {
 ###Sample use
 
 ```java
+import static com.airhacks.rulz.jaxrsclient.HttpMatchers.successful;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
@@ -83,6 +84,12 @@ public class JAXRSClientProviderTest {
         Response response = target.request(MediaType.TEXT_HTML).get();
         assertThat(response.getStatus(), is(200));
     }
-
+    
+    @Test
+    public void pingJavaAndVerifyWithMatcher() {
+        //(...)
+        Response response = target.request(MediaType.TEXT_HTML).get();
+        assertThat(response, is(successful()));
+    }
 }
 ```
