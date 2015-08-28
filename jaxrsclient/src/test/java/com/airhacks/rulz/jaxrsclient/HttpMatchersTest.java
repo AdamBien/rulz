@@ -52,4 +52,12 @@ public class HttpMatchersTest {
         assertThat(response, is(created));
     }
 
+    @Test
+    public void noContentMatcher() {
+        Matcher<Response> noContent = HttpMatchers.noContent();
+        Response response = mock(Response.class);
+        when(response.getStatus()).thenReturn(204);
+        assertThat(response, is(noContent));
+    }
+
 }
