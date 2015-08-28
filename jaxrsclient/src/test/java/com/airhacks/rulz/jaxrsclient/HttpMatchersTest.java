@@ -43,4 +43,13 @@ public class HttpMatchersTest {
         assertThat(response, is(successful));
     }
 
+    @Test
+    public void createdMatcher() {
+        Matcher<Response> created = HttpMatchers.created();
+        Response response = mock(Response.class);
+        when(response.getHeaderString("Location")).thenReturn("http://something");
+        when(response.getStatus()).thenReturn(201);
+        assertThat(response, is(created));
+    }
+
 }
