@@ -8,7 +8,7 @@
     </parent>
     <groupId>com.airhacks.rulz</groupId>
     <artifactId>jaxrsclient</artifactId>
-    <version>0.0.3</version>
+    <version>0.0.4-SNAPSHOT</version>
     <packaging>jar</packaging>
     <description>A JUnit rule which makes the JAX-RS 2.0 client accessible for integration tests
     </description>
@@ -135,7 +135,7 @@
         <connection>scm:git:git@github.com:AdamBien/rulz.git</connection>
         <url>scm:git:git@github.com:AdamBien/rulz.git</url>
         <developerConnection>scm:git:git@github.com:AdamBien/rulz.git</developerConnection>
-        <tag>v0.0.3jaxrs</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <properties>
