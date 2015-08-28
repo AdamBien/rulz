@@ -6,3 +6,4 @@ pom.xml.next
 release.properties
 /em/derby.log
 *.sh
+/jaxrsclient/nbproject/
