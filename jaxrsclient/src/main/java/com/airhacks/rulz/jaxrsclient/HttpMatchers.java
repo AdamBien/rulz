@@ -39,6 +39,17 @@ public class HttpMatchers {
             }
         };
     }
+    
+       public static Matcher<Response> clientError() {
+        return new CustomMatcher<Response>("is 4xx family of response") {
+
+            @Override
+            public boolean matches(Object o) {
+                return (o instanceof Response)
+                        && (((Response) o).getStatusInfo().getFamily() == Response.Status.Family.CLIENT_ERROR);
+            }
+        };
+    }
 
     public static Matcher<Response> noContent() {
         return new CustomMatcher<Response>("no content") {
