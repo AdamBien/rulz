@@ -31,40 +31,64 @@ import org.hamcrest.Matcher;
 public class HttpMatchers {
 
     public static Matcher<Response> successful() {
-        return new CustomMatcher<Response>("is successful response") {
+        return new CustomMatcher<Response>("successful response") {
 
             @Override
             public boolean matches(Object o) {
                 return (o instanceof Response)
                         && (((Response) o).getStatusInfo().getFamily() == Response.Status.Family.SUCCESSFUL);
             }
+
+            @Override
+            public void describeMismatch(Object item, Description description) {
+                Response response = (Response) item;
+                provideDescription(response, description);
+            }
+
         };
     }
 
     public static Matcher<Response> noContent() {
-        return new CustomMatcher<Response>("no content") {
+        final int statusCode = Response.Status.NO_CONTENT.getStatusCode();
+        return new CustomMatcher<Response>("no content (" + statusCode + ")") {
 
             @Override
             public boolean matches(Object o) {
                 return (o instanceof Response)
-                        && (((Response) o).getStatus() == Response.Status.NO_CONTENT.getStatusCode());
+                        && (((Response) o).getStatus() == statusCode);
             }
+
+            @Override
+            public void describeMismatch(Object item, Description description) {
+                Response response = (Response) item;
+                provideDescription(response, description);
+            }
+
         };
     }
 
     public static Matcher<Response> serverError() {
-        return new CustomMatcher<Response>("Internal server error") {
+        final int statusCode = Response.Status.INTERNAL_SERVER_ERROR.getStatusCode();
+        return new CustomMatcher<Response>("Internal server error(" + statusCode + ")") {
 
             @Override
             public boolean matches(Object o) {
                 return (o instanceof Response)
-                        && (((Response) o).getStatus() == Response.Status.INTERNAL_SERVER_ERROR.getStatusCode());
+                        && (((Response) o).getStatus() == statusCode);
             }
+
+            @Override
+            public void describeMismatch(Object item, Description description) {
+                Response response = (Response) item;
+                provideDescription(response, description);
+            }
+
         };
     }
 
     public static Matcher<Response> created() {
-        return new CustomMatcher<Response>("201 created status with location header") {
+        final int statusCode = Response.Status.CREATED.getStatusCode();
+        return new CustomMatcher<Response>("created status (" + statusCode + ") with location header") {
 
             @Override
             public boolean matches(Object o) {
@@ -72,7 +96,7 @@ public class HttpMatchers {
                     return false;
                 }
                 Response response = (Response) o;
-                if (response.getStatus() == Response.Status.CREATED.getStatusCode()) {
+                if (response.getStatus() == statusCode) {
                     String header = response.getHeaderString("Location");
                     return (header != null);
                 } else {
@@ -83,10 +107,14 @@ public class HttpMatchers {
             @Override
             public void describeMismatch(Object item, Description description) {
                 Response response = (Response) item;
-                description.appendText(response.getStatusInfo().getReasonPhrase() + " " + response.getStatus());
+                provideDescription(response, description);
             }
-
-
         };
+    }
+
+    static void provideDescription(Response response, Description description) {
+        description.appendText(response.getStatusInfo().getReasonPhrase() + " " + response.getStatus()).
+                appendText(" returned");
+
     }
 }
