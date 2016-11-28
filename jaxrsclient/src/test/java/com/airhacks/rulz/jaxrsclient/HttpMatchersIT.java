@@ -39,6 +39,7 @@ import static com.airhacks.rulz.jaxrsclient.HttpMatchers.clientError;
 import static com.airhacks.rulz.jaxrsclient.HttpMatchers.created;
 import static com.airhacks.rulz.jaxrsclient.HttpMatchers.informational;
 import static com.airhacks.rulz.jaxrsclient.HttpMatchers.noContent;
+import static com.airhacks.rulz.jaxrsclient.HttpMatchers.other;
 import static com.airhacks.rulz.jaxrsclient.HttpMatchers.redirection;
 import static com.airhacks.rulz.jaxrsclient.HttpMatchers.serverError;
 import static com.airhacks.rulz.jaxrsclient.HttpMatchers.successful;
@@ -152,6 +153,17 @@ public class HttpMatchersIT {
                 header("status", 500).
                 get();
         assertThat(response, is(informational()));
+    }
+
+    @Test
+    public void otherMessage() {
+        expected.expect(AssertionError.class);
+        expected.expectMessage(containsString("Internal Server Error 500 returned"));
+        expected.expectMessage(containsString("unrecognized family of response"));
+        Response response = this.tut.request().
+                header("status", 500).
+                get();
+        assertThat(response, is(other()));
     }
 
 }

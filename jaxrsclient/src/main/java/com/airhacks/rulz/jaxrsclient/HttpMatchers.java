@@ -98,7 +98,23 @@ public class HttpMatchers {
                 Response response = (Response) item;
                 provideDescription(response, description);
             }
+        };
+    }
 
+    public static Matcher<Response> other() {
+        return new CustomMatcher<Response>("unrecognized family of responses") {
+
+            @Override
+            public boolean matches(Object o) {
+                return (o instanceof Response)
+                        && (((Response) o).getStatusInfo().getFamily() == Response.Status.Family.OTHER);
+            }
+
+            @Override
+            public void describeMismatch(Object item, Description description) {
+                Response response = (Response) item;
+                provideDescription(response, description);
+            }
         };
     }
 
