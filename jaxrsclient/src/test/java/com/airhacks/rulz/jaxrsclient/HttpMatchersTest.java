@@ -54,6 +54,16 @@ public class HttpMatchersTest {
     }
 
     @Test
+    public void redirectionErrorMatcher() {
+        Matcher<Response> redirectionMatcher = HttpMatchers.redirection();
+        Response response = mock(Response.class);
+        Response.StatusType statusType = mock(Response.StatusType.class);
+        when(response.getStatusInfo()).thenReturn(statusType);
+        when(statusType.getFamily()).thenReturn(Response.Status.Family.REDIRECTION);
+        assertThat(response, is(redirectionMatcher));
+    }
+
+    @Test
     public void createdMatcher() {
         Matcher<Response> created = HttpMatchers.created();
         Response response = mock(Response.class);
