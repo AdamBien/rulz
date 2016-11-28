@@ -1,7 +1,7 @@
 # rulz
 Reusable JUnit Rules
 
-See Rulz in action: ["Effective Java EE 7" online workshop, episode 5](http://effectivejavaee.com)
+See Rulz in action: ["Effective Java EE" online workshop, episode 5](http://effectivejavaee.com) and in the ["Java EE Testing and Quality Workshop"](http://javaeetesting.com)
 
 ##JPA EntityManager provider
 
