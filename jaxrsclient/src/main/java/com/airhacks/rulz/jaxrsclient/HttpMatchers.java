@@ -31,7 +31,7 @@ import org.hamcrest.Matcher;
 public class HttpMatchers {
 
     public static Matcher<Response> successful() {
-        return new CustomMatcher<Response>("successful response") {
+        return new CustomMatcher<Response>("2xx family of successful responses") {
 
             @Override
             public boolean matches(Object o) {
@@ -49,13 +49,20 @@ public class HttpMatchers {
     }
     
        public static Matcher<Response> clientError() {
-        return new CustomMatcher<Response>("is 4xx family of response") {
+           return new CustomMatcher<Response>("4xx (client error) family of responses") {
 
             @Override
             public boolean matches(Object o) {
                 return (o instanceof Response)
                         && (((Response) o).getStatusInfo().getFamily() == Response.Status.Family.CLIENT_ERROR);
             }
+
+            @Override
+            public void describeMismatch(Object item, Description description) {
+                Response response = (Response) item;
+                provideDescription(response, description);
+            }
+
         };
     }
 

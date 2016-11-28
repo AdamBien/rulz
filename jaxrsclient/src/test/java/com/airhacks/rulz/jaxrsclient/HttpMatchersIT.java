@@ -35,6 +35,7 @@ package com.airhacks.rulz.jaxrsclient;
  * #L%
  */
 
+import static com.airhacks.rulz.jaxrsclient.HttpMatchers.clientError;
 import static com.airhacks.rulz.jaxrsclient.HttpMatchers.created;
 import static com.airhacks.rulz.jaxrsclient.HttpMatchers.noContent;
 import static com.airhacks.rulz.jaxrsclient.HttpMatchers.serverError;
@@ -58,6 +59,11 @@ import org.junit.rules.ExpectedException;
 public class HttpMatchersIT {
 
     private Client client;
+
+    /**
+     * URI refers to {@link
+     * <a href="https://github.com/AdamBien/statustest">statustest</a>}.
+     */
     private static final String STATUSTEST_URI = "http://localhost:8080/statustest/resources/statuses";
     private WebTarget tut;
 
@@ -111,6 +117,17 @@ public class HttpMatchersIT {
                 header("status", 500).
                 get();
         assertThat(response, is(created()));
+    }
+
+    @Test
+    public void clientErrorMessage() {
+        expected.expect(AssertionError.class);
+        expected.expectMessage(containsString("Internal Server Error 500 returned"));
+        expected.expectMessage(containsString("4xx (client error) family of responses"));
+        Response response = this.tut.request().
+                header("status", 500).
+                get();
+        assertThat(response, is(clientError()));
     }
 
 }
