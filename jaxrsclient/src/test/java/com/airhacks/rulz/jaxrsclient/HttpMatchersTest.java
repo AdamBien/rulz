@@ -64,6 +64,16 @@ public class HttpMatchersTest {
     }
 
     @Test
+    public void informationalErrorMatcher() {
+        Matcher<Response> informationalMatcher = HttpMatchers.informational();
+        Response response = mock(Response.class);
+        Response.StatusType statusType = mock(Response.StatusType.class);
+        when(response.getStatusInfo()).thenReturn(statusType);
+        when(statusType.getFamily()).thenReturn(Response.Status.Family.INFORMATIONAL);
+        assertThat(response, is(informationalMatcher));
+    }
+
+    @Test
     public void createdMatcher() {
         Matcher<Response> created = HttpMatchers.created();
         Response response = mock(Response.class);

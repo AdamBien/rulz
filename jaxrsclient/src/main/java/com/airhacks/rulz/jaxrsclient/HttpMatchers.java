@@ -65,6 +65,7 @@ public class HttpMatchers {
 
         };
     }
+
     public static Matcher<Response> redirection() {
         return new CustomMatcher<Response>("3xx (redirection) family of responses") {
 
@@ -72,6 +73,24 @@ public class HttpMatchers {
             public boolean matches(Object o) {
                 return (o instanceof Response)
                         && (((Response) o).getStatusInfo().getFamily() == Response.Status.Family.REDIRECTION);
+            }
+
+            @Override
+            public void describeMismatch(Object item, Description description) {
+                Response response = (Response) item;
+                provideDescription(response, description);
+            }
+
+        };
+    }
+
+    public static Matcher<Response> informational() {
+        return new CustomMatcher<Response>("1xx (informational) family of responses") {
+
+            @Override
+            public boolean matches(Object o) {
+                return (o instanceof Response)
+                        && (((Response) o).getStatusInfo().getFamily() == Response.Status.Family.INFORMATIONAL);
             }
 
             @Override
