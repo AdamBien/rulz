@@ -93,3 +93,5 @@ public class JAXRSClientProviderTest {
     }
 }
 ```
+
+JAX-RS client rules are tested with [statustest](https://github.com/AdamBien/statustest)
