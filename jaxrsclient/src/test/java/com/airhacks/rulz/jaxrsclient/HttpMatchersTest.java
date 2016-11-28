@@ -42,6 +42,16 @@ public class HttpMatchersTest {
         when(statusType.getFamily()).thenReturn(Response.Status.Family.SUCCESSFUL);
         assertThat(response, is(successful));
     }
+    
+    @Test
+    public void clientErrorMatcher() {
+        Matcher<Response> clientError = HttpMatchers.clientError();
+        Response response = mock(Response.class);
+        Response.StatusType statusType = mock(Response.StatusType.class);
+        when(response.getStatusInfo()).thenReturn(statusType);
+        when(statusType.getFamily()).thenReturn(Response.Status.Family.CLIENT_ERROR);
+        assertThat(response, is(clientError));
+    }
 
     @Test
     public void createdMatcher() {
