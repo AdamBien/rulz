@@ -3,9 +3,9 @@ Reusable JUnit Rules
 
 See Rulz in action: ["Effective Java EE" online workshop, episode 5](http://effectivejavaee.com) and in the ["Java EE Testing and Quality Workshop"](http://javaeetesting.com)
 
-##JPA EntityManager provider
+## JPA EntityManager provider
 
-###Installation
+### Installation
 
 ```xml
     <dependency>
@@ -15,7 +15,7 @@ See Rulz in action: ["Effective Java EE" online workshop, episode 5](http://effe
         <scope>test</scope>
     </dependency>
 ```
-###Sample use
+### Sample use
 
 ```java
 import com.airhacks.rulz.em.*;
@@ -43,9 +43,9 @@ public class WorkshopTest {
     }
 }
 ```
-##JAX-RS 2.0 Client provider
+## JAX-RS 2.0 Client provider
 
-###Installation
+### Installation
 
 ```xml
         <dependency>
@@ -56,7 +56,7 @@ public class WorkshopTest {
         </dependency>
 ```
 
-###Sample use
+### Sample use
 
 ```java
 import static com.airhacks.rulz.jaxrsclient.HttpMatchers.successful;
